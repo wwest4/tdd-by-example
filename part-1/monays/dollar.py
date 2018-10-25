@@ -1,9 +1,4 @@
-class Dollar:
-    def __init__(self, amount):
-        self._amount = amount
+from monays.money import Money
 
-    def times(self, multiplicand):
-        return Dollar(self._amount * multiplicand)
-
-    def equals(self, other):
-        return self._amount == other._amount
+class Dollar(Money):
+    pass

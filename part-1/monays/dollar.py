@@ -9,3 +9,6 @@ class Dollar:
     def amount(self):
         return self._amount
 
+    def equals(self, other):
+        return self.amount == other.amount
+

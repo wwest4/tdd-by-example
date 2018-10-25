@@ -1,3 +1,5 @@
+from monays.dollar import Dollar
+
 class TestMonays:
     def testMultiplication(self):
         five = Dollar(5)

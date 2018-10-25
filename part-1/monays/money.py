@@ -3,7 +3,7 @@ class Money:
         self._amount = amount
 
     def times(self, multiplicand):
-        return Money(self._amount * multiplicand)
+        return self.__class__(self._amount * multiplicand)
 
     def equals(self, other):
-        return self._amount == other._amount
+        return self._amount == other._amount and self.__class__ is other.__class__

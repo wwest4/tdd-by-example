@@ -3,7 +3,7 @@ class Dollar:
         self._amount = amount
 
     def times(self, multiplicand):
-        self._amount *= multiplicand
+        return Dollar(self._amount * multiplicand)
 
     @property
     def amount(self):

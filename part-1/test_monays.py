@@ -3,12 +3,8 @@ from monays.dollar import Dollar
 class TestMonays:
     def testMultiplication(self):
         five = Dollar(5)
-
-        product = five.times(2)
-        assert 10 == product.amount
-
-        product = five.times(3)
-        assert 15 == product.amount
+        assert Dollar(10).equals(five.times(2))
+        assert Dollar(15).equals(five.times(3))
 
     def testEquality(self):
         assert Dollar(5).equals(Dollar(5))

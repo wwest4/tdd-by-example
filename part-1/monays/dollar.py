@@ -5,10 +5,5 @@ class Dollar:
     def times(self, multiplicand):
         return Dollar(self._amount * multiplicand)
 
-    @property
-    def amount(self):
-        return self._amount
-
     def equals(self, other):
-        return self.amount == other.amount
-
+        return self._amount == other._amount

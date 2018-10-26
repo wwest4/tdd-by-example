@@ -1,18 +1,16 @@
-from monays.dollar import Dollar
-from monays.franc import Franc
-from monays.money import Money
+import monays.money as money
 
 
 class TestMoney:
     def testMultiplication(self):
-        assert Dollar(10).equals(Dollar(5).times(2))
-        assert Dollar(15).equals(Dollar(5).times(3))
-        assert Franc(10).equals(Franc(5).times(2))
-        assert Franc(15).equals(Franc(5).times(3))
+        assert money.dollar(10).equals(money.dollar(5).times(2))
+        assert money.dollar(15).equals(money.dollar(5).times(3))
+        assert money.franc(10).equals(money.franc(5).times(2))
+        assert money.franc(15).equals(money.franc(5).times(3))
 
     def testEquality(self):
-        assert Dollar(5).equals(Dollar(5))
-        assert not Dollar(5).equals(Dollar(6))
-        assert Franc(5).equals(Franc(5))
-        assert not Franc(5).equals(Franc(6))
-        assert not Franc(5).equals(Dollar(5))
+        assert money.dollar(5).equals(money.dollar(5))
+        assert not money.dollar(5).equals(money.dollar(6))
+        assert money.franc(5).equals(money.franc(5))
+        assert not money.franc(5).equals(money.franc(6))
+        assert not money.franc(5).equals(money.dollar(5))

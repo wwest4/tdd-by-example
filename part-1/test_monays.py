@@ -14,3 +14,7 @@ class TestMoney:
         assert money.franc(5).equals(money.franc(5))
         assert not money.franc(5).equals(money.franc(6))
         assert not money.franc(5).equals(money.dollar(5))
+
+    def testCurrency(self):
+        assert "USD" == money.dollar(1).currency()
+        assert "CHF" == money.franc(1).currency()

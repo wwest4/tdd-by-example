@@ -4,10 +4,10 @@ class Money:
         self._currency = currency
 
     def times(self, multiplicand):
-        return self.__class__(self._amount * multiplicand, self._currency)
+        return Money(self._amount * multiplicand, self._currency)
 
     def equals(self, other):
-        return self._amount == other._amount and self.__class__ is other.__class__
+        return self._amount == other._amount and self.currency() is other.currency()
 
     def currency(self):
         return self._currency

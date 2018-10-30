@@ -1,4 +1,6 @@
 import monays.money as money
+from monays.money import Money
+from monays.franc import Franc
 
 
 class TestMoney:
@@ -18,3 +20,6 @@ class TestMoney:
     def testCurrency(self):
         assert "USD" == money.dollar(1).currency()
         assert "CHF" == money.franc(1).currency()
+
+    def testDifferentClassEquality(self):
+        assert Money(10, 'CHF').equals(Franc(10, 'CHF'))

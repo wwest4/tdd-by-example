@@ -13,13 +13,10 @@ class Money:
         return self._currency
 
 
-from monays.franc import Franc
-from monays.dollar import Dollar
+    @staticmethod
+    def dollar(amount):
+        return Money(amount, 'USD')
 
-
-def dollar(amount):
-    return Dollar(amount, 'USD')
-
-
-def franc(amount):
-    return Franc(amount, 'CHF')
+    @staticmethod
+    def franc(amount):
+        return Money(amount, 'CHF')

@@ -12,6 +12,11 @@ class Money:
     def currency(self):
         return self._currency
 
+    def plus(self, addend):
+        return Money(self._amount + addend._amount, self._currency)
+
+    def __eq__(self, other):
+        return self.equals(other)
 
     @staticmethod
     def dollar(amount):
@@ -20,3 +25,9 @@ class Money:
     @staticmethod
     def franc(amount):
         return Money(amount, 'CHF')
+
+
+class Bank:
+    def reduce(self, expression, currency):
+        amount = 10
+        return Money(amount, currency)

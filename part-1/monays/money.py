@@ -1,19 +1,16 @@
 class Money:
     def __init__(self, amount, currency):
-        self._amount = amount
-        self._currency = currency
+        self.amount = amount
+        self.currency = currency
 
     def times(self, multiplicand):
-        return Money(self._amount * multiplicand, self._currency)
+        return Money(self.amount * multiplicand, self.currency)
 
     def equals(self, other):
-        return self._amount == other._amount and self.currency() is other.currency()
-
-    def currency(self):
-        return self._currency
+        return self.amount == other.amount and self.currency is other.currency
 
     def plus(self, addend):
-        return Money(self._amount + addend._amount, self._currency)
+        return Sum(self, addend)
 
     def __eq__(self, other):
         return self.equals(other)
@@ -29,5 +26,18 @@ class Money:
 
 class Bank:
     def reduce(self, expression, currency):
-        amount = 10
-        return Money(amount, currency)
+        return expression.reduce(currency)
+
+
+class Expression:
+    pass
+
+
+class Sum(Expression):
+    def __init__(self, augend, addend):
+        self.augend = augend
+        self.addend = addend
+
+    def reduce(self, currency):
+        result = self.augend.amount + self.addend.amount
+        return Money(result, currency)

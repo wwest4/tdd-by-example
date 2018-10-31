@@ -1,4 +1,4 @@
-from monays.money import Money, Bank
+from monays.money import Money, Bank, Sum
 
 
 class TestMoney:
@@ -14,8 +14,8 @@ class TestMoney:
         assert Money.franc(5) != Money.dollar(5)
 
     def testCurrency(self):
-        assert "USD" == Money.dollar(1).currency()
-        assert "CHF" == Money.franc(1).currency()
+        assert "USD" == Money.dollar(1).currency
+        assert "CHF" == Money.franc(1).currency
 
     def testSimpleAddition(self):
         five = Money.dollar(5)
@@ -23,3 +23,15 @@ class TestMoney:
         bank = Bank()
         reduced = bank.reduce(total, 'USD')
         assert reduced == Money.dollar(10)
+
+    def testPlusReturnsSum(self):
+        five = Money.dollar(5)
+        total = five.plus(five)
+        assert five == total.augend
+        assert five == total.addend
+
+    def testReduceSum(self):
+        total = Sum(Money.dollar(3), Money.dollar(4))
+        bank = Bank()
+        result = bank.reduce(total, 'USD')
+        assert Money.dollar(7) == result

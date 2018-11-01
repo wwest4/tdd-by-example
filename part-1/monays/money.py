@@ -43,7 +43,11 @@ class Bank:
 
 
 class Expression:
-    pass
+    def plus(self, addend):
+        return Sum(self, addend)
+
+    def times(self, addend):
+        pass
 
 
 class Sum(Expression):
@@ -52,5 +56,8 @@ class Sum(Expression):
         self.addend = addend
 
     def reduce(self, bank, currency):
-        result = self.augend.amount + self.addend.amount
+        result = self.augend.reduce(bank, currency).amount + self.addend.reduce(bank, currency).amount
         return Money(result, currency)
+
+    def plus(self, addend):
+        pass

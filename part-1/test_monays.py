@@ -44,3 +44,11 @@ class TestMoney:
 
     def testIdentityRate(self):
         assert 1 == Bank().rate("USD", "USD")
+
+    def testMixedAddition(self):
+        fiveBucks = Money.dollar(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.addRate('CHF', 'USD', 2)
+        result = bank.reduce(fiveBucks.plus(tenFrancs), 'USD')
+        assert Money.dollar(10) == result

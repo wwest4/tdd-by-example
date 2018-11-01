@@ -15,6 +15,10 @@ class Money:
     def __eq__(self, other):
         return self.equals(other)
 
+    def reduce(self, bank, currency):
+        rate = bank.rate(self.currency, currency)
+        return Money(self.amount / rate, currency)
+
     @staticmethod
     def dollar(amount):
         return Money(amount, 'USD')
@@ -25,8 +29,17 @@ class Money:
 
 
 class Bank:
+    def __init__(self):
+        self.rates = {}
+
     def reduce(self, expression, currency):
-        return expression.reduce(currency)
+        return expression.reduce(self, currency)
+
+    def addRate(self, numerator, denominator, factor):
+        self.rates[numerator, denominator] = factor
+
+    def rate(self, numerator, denominator):
+        return 1 if numerator == denominator else self.rates[numerator, denominator]
 
 
 class Expression:
@@ -38,6 +51,6 @@ class Sum(Expression):
         self.augend = augend
         self.addend = addend
 
-    def reduce(self, currency):
+    def reduce(self, bank, currency):
         result = self.augend.amount + self.addend.amount
         return Money(result, currency)

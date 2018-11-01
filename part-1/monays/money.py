@@ -44,10 +44,10 @@ class Bank:
 
 class Expression:
     def plus(self, addend):
-        return Sum(self, addend)
+        raise NotImplementedError
 
     def times(self, addend):
-        pass
+        raise NotImplementedError
 
 
 class Sum(Expression):
@@ -60,4 +60,7 @@ class Sum(Expression):
         return Money(result, currency)
 
     def plus(self, addend):
-        pass
+        return Sum(self, addend)
+
+    def times(self, multiplicand):
+        return Sum(self.augend.times(multiplicand), self.addend.times(multiplicand))
